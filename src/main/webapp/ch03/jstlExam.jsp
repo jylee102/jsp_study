@@ -27,5 +27,38 @@
 			<li>${i.index}: ${num}</li>
 		</c:forEach>
 	</ul>
+	
+	<h3>if</h3>
+	<c:set var="checkout" value="true" />
+	<c:if test="${checkout}">
+		<p>주문제품: ${product2}</p>
+	</c:if>
+	<c:if test="${!checkout}">
+		<p>체크아웃 상태가 아님!</p>
+	</c:if>
+	<c:if test="${!empty product2}">
+		<p>
+			<b>${product2}가 이미 추가됨!</b>
+		</p>
+	</c:if>
+	<hr />
+	
+	<h3>choose, when, otherwise</h3>
+	<c:choose>
+		<c:when test="${checkout}">
+			<p>주문제품: ${product2}</p>
+		</c:when>
+		<c:otherwise>
+			<p>체크아웃 상태가 아님!</p>
+		</c:otherwise>
+	</c:choose>
+	
+	<h3>forTokens</h3>
+	<c:forTokens var="city" items="Seoul/Tokyo/New York/Toronto" delims="/" varStatus="i">
+		<c:if test="${i.first}">도시목록:</c:if> <!-- 인덱스 번호가 가장 처음이라면 -->
+		${i.index}:
+		${city}
+		<c:if test="${!i.last}">,</c:if> <!-- 인덱스 번호가 가장 끝이 아니라면 -->
+	</c:forTokens>
 </body>
 </html>
